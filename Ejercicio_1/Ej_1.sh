@@ -88,3 +88,29 @@ for linea in $(cat $archivo);do
         else
                 creard="-M" #Con control previo en el Regex que recibe NO espesificamente
         fi
+	#----------------------CAMPOS POR DEFECTO---------------------------------------
+        usuariocreado=$(cat /etc/passwd | cut -d":" -f1 | grep "^$usuario$") #Ese grep busca una linea vacia si esta vacio
+        if [ -n "$usuariocreado" ];then
+                errorfatal="true"
+        else
+                armocomand=() #Creo que sin un array esto es imposible, lo intente
+                if [ -n "$comentario" ];then #Si no esta vacio agrega al array, igual con los demas
+                        armocomand+=(-c "$comentario")
+                fi
+                if [  -n "$home" ] && [[ "$crear" = "SI" ]];then
+                        armocomand+=(-d "$home")
+                fi
+                if [ -n "$gsh" ];then
+                        armocomand+=(-s "$gsh")
+                fi
+                if [ ${#armocomand[@]} -eq 0 ];then #comparo si la longitud del array es 0, en vez del -z "", 3 horas con esto
+                        useradd $creard "$usuario" 2> /dev/null
+                        #echo "useradd $creard $usuario" #TEST
+                else
+                        useradd "${armocomand[@]}" $creard "$usuario" 2> /dev/null
+                        #echo "useradd ${armocomand[@]} $creard $usuario" #TEST
+                fi
+                if ! [ -z "$contra" ];then
+                        echo $usuario:$contra | sudo chpasswd 2> /dev/null
+                fi
+        fi

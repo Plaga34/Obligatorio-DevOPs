@@ -104,10 +104,10 @@ for linea in $(cat $archivo);do
                         armocomand+=(-s "$gsh")
                 fi
                 if [ ${#armocomand[@]} -eq 0 ];then #comparo si la longitud del array es 0, en vez del -z ""
-                        useradd $creard "$usuario" #2> /dev/null
+                        useradd $creard "$usuario" 2> /dev/null
                         #echo "useradd $creard $usuario" #TEST
                 else
-                        useradd "${armocomand[@]}" $creard "$usuario" #2> /dev/null
+                        useradd "${armocomand[@]}" $creard "$usuario" 2> /dev/null
                         #echo "useradd ${armocomand[@]} $creard $usuario" #TEST
                 fi
                 if ! [ -z "$contra" ];then

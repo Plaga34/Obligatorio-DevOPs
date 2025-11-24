@@ -114,3 +114,27 @@ for linea in $(cat $archivo);do
                         echo $usuario:$contra | sudo chpasswd 2> /dev/null
                 fi
         fi
+
+	if [[ "$desplegar" = "1" ]];then #Desplegar es el -i para mostrar informacion
+		usuariocreado=$(cat /etc/passwd | cut -d":" -f1 | grep "^$usuario$")
+		if [ -z "$usuariocreado"  ];then
+			errorfatal="true"
+		else
+			if [[ "$errorfatal" = "false" ]];then
+				echo Usuario $usuario creado con éxito con datos indicados:
+				echo "	Comentario: $comentario"
+				echo "	Dir home: $home"
+				echo "	Asegurado existencia de directorio home: $crear"
+				echo "	Shell por defecto: $gsh"
+				echo corresponde a la linea $cont
+			else
+				echo ATENCION: el usuario $usuario de la linea $cont no pudo ser creado
+			fi
+		fi
+		
+	fi #Aca termina el -i que despliega informacion
+
+	#Reseteo de variables por ciclo
+	errorfatal="false" #Seteo la variable preparandola para el siguente recorrido
+	usuariocreado=""
+done #Fin del for de recorrida de linea a linea

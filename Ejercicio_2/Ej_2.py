@@ -65,5 +65,43 @@ except ClientError as e:
         print(f"La regla ya existe en el Security Group, la voy a reutilizar")
     else:
         raise
+#Security Group para RDS
+
+sg_name_rds ='rds_sg'
+sg_desc_rds ='SG para la base de datos'
+
+resp = ec2.describe_security_groups(
+    Filters=[{'Name':'group-name','Values': [sg_name_rds]}]
+)
+if resp['SecurityGroups']:
+    rds_sg_id=resp['SecurityGroups'][0]['GroupId']
+    print(f"El Security Group {rds_sg_id} ya existe, lo reutilizare")
+else:
+    rds_sg_id = ec2.create_security_group(
+        GroupName= 'rds_sg',
+        Description='SG para la base de datos'
+)
+
+print(f"Security Group de RDS creado con exito: {rds_sg_id}")
+
+#Permitimos que RDS pueda acceder a travez del puerto 3306 desde la EC2
+
+try:
+    ec2.authorize_security_group_ingress(
+        GroupId=rds_sg_id,
+        IpPermissions=[
+            {
+                'IpProtocol':'tcp',
+                'FromPort':3306,
+                'ToPort':3306,
+                'UserIdGroupPairs':[{'GroupId': ec2_sg_id}]
+            }
+        ]
+    )
+except ClientError as e:
+    if e.response['Error']['Code'] == 'InvalidPermission.Duplicate' :
+        print(f"La regla ya existe en el Security Group, la voy a reutilizar")
+    else:
+        raise
 
 

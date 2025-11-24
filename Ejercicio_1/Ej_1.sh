@@ -26,10 +26,10 @@ while [ $# -gt 1 ];do	#Recorremos los parametros
 		-c)	
 			if [ -z "$2" ]; then
 				echo "Error, Falta agregar la contraseña luego del parametro" >&2
-				exit 2
+				exit 3
 			fi
 			contra="$2"	#Guardo el -p y la contraseña para tirar la variable entera al useradd
-			shift 3
+			shift 2
 			;;
 		-*)	
 			echo "Error, el parametro $1 no es valido" >&2
@@ -41,7 +41,7 @@ done
 archivo="$1"	#Descarte todo, solo me queda el archivo y lo guardo
 #Archivo ingresado igual a vacio
 if [ -z "$archivo" ];then
-        echo "Error, no ingreso ningun archivo o " >&2
+        echo "Error, no ingreso ningun archivo" >&2
         exit 5
 fi
 #Controlamos que es un archivo
@@ -103,11 +103,11 @@ for linea in $(cat $archivo);do
                 if [ -n "$gsh" ];then
                         armocomand+=(-s "$gsh")
                 fi
-                if [ ${#armocomand[@]} -eq 0 ];then #comparo si la longitud del array es 0, en vez del -z "", 3 horas con esto
-                        useradd $creard "$usuario" 2> /dev/null
+                if [ ${#armocomand[@]} -eq 0 ];then #comparo si la longitud del array es 0, en vez del -z ""
+                        useradd $creard "$usuario" #2> /dev/null
                         #echo "useradd $creard $usuario" #TEST
                 else
-                        useradd "${armocomand[@]}" $creard "$usuario" 2> /dev/null
+                        useradd "${armocomand[@]}" $creard "$usuario" #2> /dev/null
                         #echo "useradd ${armocomand[@]} $creard $usuario" #TEST
                 fi
                 if ! [ -z "$contra" ];then
@@ -133,7 +133,7 @@ for linea in $(cat $archivo);do
 		fi
 		
 	fi #Aca termina el -i que despliega informacion
-
+	
 	#Reseteo de variables por ciclo
 	errorfatal="false" #Seteo la variable preparandola para el siguente recorrido
 	usuariocreado=""

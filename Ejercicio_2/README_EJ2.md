@@ -1,56 +1,59 @@
+# Ejecución del Ejercicio 2 - Obligatorio
 
-Rendered
 
-Ejecución del Ejercicio 2 - Obligatorio
-Requisitos Previos:
-Maquina virtual con la distribución de Centos9 actualizada (sudo dnf update -y / sudo dnf upgrade -y).
-Conexión a internet.
-Cuenta en AWS activa.
-Usuario con permisos para crear cosas en IAM
-Agregar al repo de git el archivo .zip con los archivos de la aplicación para poder levantarla desde el código
-Instalar herramientas necesarias.
-sudo dnf install git
+## Requisitos Previos:
+- Maquina virtual con la distribución de Centos9 actualizada (sudo dnf update -y / sudo dnf upgrade -y).
+- Conexión a internet.
+- Cuenta en AWS activa.
+- Usuario con permisos para crear cosas en IAM
+- Agregar al repo de git el archivo .zip con los archivos de la aplicación para poder levantarla desde el código
 
-git --version (para saver que version tenemos)
+## Instalar herramientas necesarias.
 
-Descargamos el paquete de instalacion con el comando curl:
+- sudo dnf install git
+- git --version (para saver que version tenemos)
 
-curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+- Descargamos el paquete de instalacion con el comando curl:
 
-Descomprimimos el paquete:
+  curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
 
-unzip awscliv2.zip
+- Descomprimimos el paquete:
 
-Ejecutamos el instalador
+  unzip awscliv2.zip
 
-sudo ./aws/install
+- Ejecutamos el instalador
 
-Verificamos la versión que nos quedo instalada:
+  sudo ./aws/install
 
-aws --version
+- Verificamos la versión que nos quedo instalada:
 
-Instalamos Python
+  aws --version
 
-sudo dnf install python3
+- Instalamos Python
 
-Instalamos Pip
+  sudo dnf install python3
 
-sudo dnf install python3-pip
+- Instalamos Pip
 
-Pasos previos a la ejecución
-Clonamos el repositorio a nuestra VM:
+  sudo dnf install python3-pip
 
-Para SSH: git clone git@github.com:Plaga34/Obligatorio-DevOPs.git
 
-Para HTTP: git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
+## Pasos previos a la ejecución
 
-Para la Cli de git: gh repo clone Plaga34/Obligatorio-DevOPs
+- Clonamos el repositorio a nuestra VM:
 
-Nos posicionamos sobre la carpeta donde se encuentra el archivo Ej_2.py
+  Para SSH: git clone git@github.com:Plaga34/Obligatorio-DevOPs.git
 
-/home/sysadmin/PycharmProjects/Obligatorio-DevOps/Ejercicio 2
+  Para HTTP: git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
 
-Ejecutamos el programa
-Ejecutamos el archivo
+  Para la Cli de git: gh repo clone Plaga34/Obligatorio-DevOPs
 
-python Ej2_.py
+- Nos posicionamos sobre la carpeta donde se encuentra el archivo Ej_2.py
+
+  /home/sysadmin/PycharmProjects/Obligatorio-DevOps/Ejercicio 2
+
+## Ejecutamos el programa
+
+- Ejecutamos el archivo
+
+  python Ej2_.py

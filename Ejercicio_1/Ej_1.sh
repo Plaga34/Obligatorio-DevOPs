@@ -57,7 +57,7 @@ fi
 cont=0
 #reviso el archivo linea a linea para evaluar si es correcto
 for linea in $(cat $archivo);do
-         cont=$((cont+1))
+        cont=$((cont+1))
         if ! [[ "$linea" =~ ^[a-z_][a-z0-9_-]*:[^:]*:.*:([Ss][Ii]|[Nn][Oo]|):.*$ ]];then
                 #Controlamos que el campo usuario no este vacio y que se respeten los espacios
                 echo Estructura del archivo incorrecta, revise la linea $cont

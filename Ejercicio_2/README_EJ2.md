@@ -41,23 +41,25 @@
 ## Pasos previos a la ejecución
 
 - Clonamos el repositorio a nuestra VM:
-
+```bash
   Para SSH: git clone git@github.com:Plaga34/Obligatorio-DevOPs.git
-
+```
+```bash
   Para HTTP: git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
-
+```
+```bash
   Para la Cli de git: gh repo clone Plaga34/Obligatorio-DevOPs
-
+```
 - Nos posicionamos sobre la carpeta donde se encuentra el archivo Ej_2.py
-
+```bash
   /home/sysadmin/PycharmProjects/Obligatorio-DevOps/Ejercicio 2
-
+```
 ## Ejecutamos el programa
 
 - Ejecutamos el archivo
-
+```bash
   python Ej2_.py
-
+```
 
 ## Anexo con prompts de chatGPT
 

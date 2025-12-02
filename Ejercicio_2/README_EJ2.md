@@ -68,14 +68,14 @@ Respuesta:
 Sí, la estructura del try/except está bien planteada: intenta crear el bucket y, si ocurre un error, lo captura y lo clasifica antes de decidir qué hacer. La forma general es correcta.
 
 Lo único que conviene ajustar es la condición del if dentro del except: el acceso a e.response['Error']['Code'] funciona, pero sería más seguro usar get para evitar que falle si la clave no existe:
-
+```bash
 code = e.response.get('Error', {}).get('Code')
 if code == 'BucketAlreadyOwnedByYou':
     print(f"El bucket {bucket_name} ya existe.")
 else:
     print(f"Error creando bucket: {e}")
     exit(1)
-
+```
 
 Fuera de ese detalle, el patrón que estás usando es apropiado y funciona como debería.
 
@@ -85,17 +85,19 @@ Respuesta:
 
 Para manejar ese caso, la API devuelve el código de error InvalidPermission.Duplicate, y podés capturarlo así:
 
+```bash
 except ClientError as e:
     if e.response['Error']['Code'] == 'InvalidPermission.Duplicate' :
         print("La regla ya existe en el Security Group")
     else:
         raise
-
+```
 
 Ese es exactamente el error que envía AWS cuando intentás agregar una regla que ya está configurada.
 
 3- Se le paso el codigo final ya que teniamos un error en el userdata, no encontramos en el chat cuando se lo preguntamos pero nos detecto los siguientes errores que solucionaron el problema.
 
+```bash
 cp /tmp/obligatorio-main/app.css /var/www/html/app.css
 cp /tmp/obligatorio-main/app.js /var/www/html/app.js
 cp /tmp/obligatorio-main/config.php /var/www/html/config.php
@@ -106,6 +108,7 @@ cp /tmp/obligatorio-main/login.html /var/www/html/login.html
 cp /tmp/obligatorio-main/login.js /var/www/html/login.js
 cp /tmp/obligatorio-main/login.php /var/www/html/login.php
 cp /tmp/obligatorio-main/login.php /var/www/init_db.sql
+```
 
 en esto la ultima linea estaba mal donde dice login.php deberia decir init_db.sql
 

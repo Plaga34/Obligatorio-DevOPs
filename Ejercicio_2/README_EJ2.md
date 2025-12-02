@@ -11,7 +11,7 @@
 ## Instalar herramientas necesarias.
 ```bash
   sudo dnf install git
-  git --version (para saver que version tenemos)
+  git --version 
 ```
 - Descargamos el paquete de instalacion con el comando curl:
 ```bash

@@ -111,3 +111,52 @@ en esto la ultima linea estaba mal donde dice login.php deberia decir init_db.sq
 
 y tambien teniamos un echo que dejaba vacio el archivo index.html
 
+
+#Documentacion:
+
+#EC2
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html
+
+#Crear Instancias EC2
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/client/run_instances.html
+
+#Crear Tags
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/client/create_tags.html
+
+#Waiter para EC2
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/waiter/InstanceStatusOk.html
+
+#-----------------------------------------------------------------------------------------------
+
+#S3
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
+
+#Crear Bucket S3
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/create_bucket.html
+
+#Subir archivos S3
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/upload_file.html
+
+
+#-----------------------------------------------------------------------------------------------
+
+#RDS
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rds.html
+
+#Creamos instancia de RDS
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rds/client/create_db_instance.html
+
+
+
+#Documentacion de Security Group
+#https://boto3.amazonaws.com/v1/documentation/api/latest/guide/ec2-example-security-group.html
+
+#Crear Security Groups
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/client/create_security_group.html
+
+#Autorizar Security Groups
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/client/authorize_security_group_ingress.html
+
+#Instancias EC2
+#https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2/client/run_instances.html
+

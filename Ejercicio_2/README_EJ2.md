@@ -9,34 +9,34 @@
 - Agregar al repo de git el archivo .zip con los archivos de la aplicación para poder levantarla desde el código
 
 ## Instalar herramientas necesarias.
-
-- sudo dnf install git
-- git --version (para saver que version tenemos)
-
+```bash
+  sudo dnf install git
+  git --version (para saver que version tenemos)
+```
 - Descargamos el paquete de instalacion con el comando curl:
-
+```bash
   curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
-
+```
 - Descomprimimos el paquete:
-
+```bash
   unzip awscliv2.zip
-
+```
 - Ejecutamos el instalador
-
+```bash
   sudo ./aws/install
-
+```
 - Verificamos la versión que nos quedo instalada:
-
+```bash
   aws --version
-
+```
 - Instalamos Python
-
+```bash
   sudo dnf install python3
-
+```
 - Instalamos Pip
-
+```bash
   sudo dnf install python3-pip
-
+```
 
 ## Pasos previos a la ejecución
 

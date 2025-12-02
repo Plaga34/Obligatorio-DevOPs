@@ -41,14 +41,20 @@
 ## Pasos previos a la ejecución
 
 - Clonamos el repositorio a nuestra VM:
+
+  Para SSH:
 ```bash
-  Para SSH: git clone git@github.com:Plaga34/Obligatorio-DevOPs.git
+git clone git@github.com:Plaga34/Obligatorio-DevOPs.git
 ```
+
+  Para HTTP:
 ```bash
-  Para HTTP: git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
+git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
 ```
+
+  Para la Cli de git:
 ```bash
-  Para la Cli de git: gh repo clone Plaga34/Obligatorio-DevOPs
+gh repo clone Plaga34/Obligatorio-DevOPs
 ```
 - Nos posicionamos sobre la carpeta donde se encuentra el archivo Ej_2.py
 ```bash

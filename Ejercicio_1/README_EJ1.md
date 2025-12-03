@@ -65,6 +65,10 @@ gh repo clone Plaga34/Obligatorio-DevOPs
 
 - Nos posicionamos sobre la carpeta donde se encuentra el archivo del ejercicio 1
 
+```bash
+   /Obligatorio-DevOps/Ejercicio 2
+```
+
 ## Ejecucion del Script
 
 - Ejemplo:

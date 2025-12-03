@@ -71,3 +71,55 @@ gh repo clone Plaga34/Obligatorio-DevOPs
 - Ejemplo:
 
 sudo ./Ej_1.sh -i -c "aca va la contraseña" prueba.txt
+
+
+## Anexo con prompt de ChatGPT
+
+- Prompt:
+Estoy viendo la parte del -c y quiero evitar que lo usen sin la contraseña, funciona asi?
+```bash
+-c)
+	if [ -z "$2" ]; then
+		echo "Error, Falta agregar la contraseña luego del parametro" >&2
+		exit 3
+	fi
+	contra="$2"
+	shift 2
+	;;
+```
+- Respuesta:
+```bash
+-c)
+	if [ -z "$2" ]; then
+		echo "Error, Falta agregar la contraseña luego del parametro" >&2
+		exit 3
+	fi
+	contra="$2"
+	shift 2
+	;;
+```
+Esto está bien, le “cortás el mambo” si ponen -c solo y evitás que el script siga con una contraseña vacía.
+
+- Prompt:
+
+Estoy usando este regex para chequear cada línea del archivo, decis que le falte algo?
+```bash
+if ! [[ "$linea" =~ ^[a-z_][a-z0-9_-]*:[^:]*:.*:([Ss][Ii]|[Nn][Oo]|):.*$ ]];then
+	echo Estructura del archivo incorrecta, revise la linea $cont
+	echo Consulte la documentacion para revisar casos erroneos
+	exit 8
+fi
+```
+- Respuesta:
+  
+Sí, esa regex es sólida para lo que estás queriendo chequear. Y si algo no coincide, cortás con un mensaje claro:
+```bash
+if ! [[ "$linea" =~ ^[a-z_][a-z0-9_-]*:[^:]*:.*:([Ss][Ii]|[Nn][Oo]|):.*$ ]];then
+	echo Estructura del archivo incorrecta, revise la linea $cont
+	echo Consulte la documentacion para revisar casos erroneos
+	exit 8
+fi
+```
+
+Te asegura que el archivo venga con la estructura que esperás.
+

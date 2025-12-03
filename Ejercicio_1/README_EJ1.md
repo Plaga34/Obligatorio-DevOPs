@@ -8,7 +8,7 @@
 
 - Archivo de texto con la lista de usuarios a crear, con el formato indicado más abajo.
 
-- Conexión a internet para clonar el repositorio (opcional si ya se encuentra descargado).
+- Conexión a internet para clonar el repositorio.
 
 ## Formato del archivo de usuarios
 
@@ -38,10 +38,7 @@ elmaligno::::/bin/el_maligno
 
 El script valida la estructura de cada línea y corta la ejecución con error si encuentra una línea mal formada.
 
-Please make sure to update tests as appropriate.
-
 ## Pasos previos a la ejecución
-
 
 - Clonamos el repositorio a nuestra VM:
 

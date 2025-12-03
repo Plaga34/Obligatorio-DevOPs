@@ -41,19 +41,16 @@ sg_desc = 'Security group para la web'
 resp = ec2.describe_security_groups(
     Filters=[{'Name': 'group-name', 'Values': [sg_name]}]
 )
-
 if resp['SecurityGroups']:
     ec2_sg_id = resp['SecurityGroups'][0]['GroupId']
     print(f"El Security Group {ec2_sg_id} ya existe")
-
 else:
     resp_sg = ec2.create_security_group(
-        GroupName='sg_name',
-        Description='sg_desc',
-
+        GroupName='ec2-web-sg',
+        Description='Security group para la web'
     )
-ec2_sg_id = resp_sg['GroupId']
-print(f"Security Group de EC2 creado con exito: {ec2_sg_id}")
+    ec2_sg_id = resp_sg['GroupId']
+    print(f"Security Group de EC2 creado con exito: {ec2_sg_id}")
 
 # Permitimos el trafico de HTTP(Puerto 80) para la app
 
@@ -91,8 +88,8 @@ else:
         GroupName='rds_sg',
         Description='SG para la base de datos'
     )
-rds_sg_id = resp_rds_sg['GroupId']
-print(f"Security Group de RDS creado con exito: {rds_sg_id}")
+    rds_sg_id = resp_rds_sg['GroupId']
+    print(f"Security Group de RDS creado con exito: {rds_sg_id}")
 
 # Permitimos que RDS pueda acceder a travez del puerto 3306 desde la EC2
 
@@ -126,9 +123,6 @@ DB_PASS = getpass("Introduce la contraseña del admin RDS: ")
 if not DB_PASS:
     raise Exception('Por favor ingrese una contraseña valida.')
 
-# Colocamos un mensaje en pantalla mientras la instancia inicie
-print(f"Espere mientras se crean las instancias")
-
 try:
     rds.create_db_instance(
         DBInstanceIdentifier=DB_INSTANCE_ID,
@@ -147,6 +141,9 @@ try:
 except rds.exceptions.DBInstanceAlreadyExistsFault:
 
     print(f"La instancia {DB_INSTANCE_ID} ya existe.")
+
+# Colocamos un mensaje en pantalla mientras la instancia inicie
+print(f"Espere mientras se crea la instancia")
 
 # esperamos a que la instancia este creada
 waiter = rds.get_waiter('db_instance_available')
@@ -167,9 +164,11 @@ mkdir -p /var/www/html/app
 cd /var/www/html/app
 
 #Descargamos el zip desde la instancia S3
+#aws s3 cp s3://{bucket_name}/{object_name} /var/www/html/app/obligatorio.zip
 aws s3 cp s3://{bucket_name}/{object_name} /tmp/obligatorio.zip
 
 #Descomprimimos el archivo de la aplicacion
+#unzip -o /var/www/html/app/obligatorio.zip -d /var/www/html/app/obligatorio-main
 unzip -o /tmp/obligatorio.zip -d /tmp/
 
 cp /tmp/obligatorio-main/app.css /var/www/html/app.css
@@ -183,6 +182,7 @@ cp /tmp/obligatorio-main/login.js /var/www/html/login.js
 cp /tmp/obligatorio-main/login.php /var/www/html/login.php
 cp /tmp/obligatorio-main/init_db.sql /var/www/init_db.sql
 
+
 mysql -h {rds_endpoint} -u {DB_USER} -p{DB_PASS} {DB_NAME} < /var/www/init_db.sql
 
 sudo tee /var/www/.env >/dev/null <<'ENV'
@@ -193,11 +193,15 @@ DB_PASS={DB_PASS}
 
 ENV
 
+
 sudo chown -R apache:apache /var/www/.env
 sudo chmod -R 600 /var/www/.env```
 
 sudo chown -R apache:apache /var/www/html
 sudo chmod -R 755 /var/www/html
+
+
+#echo "La aplicacion se desplego correctamente" > /var/www/html/index.html
 
 #Reiniciamos apache
 systemctl restart httpd php-fpm
@@ -227,7 +231,6 @@ print(f"Instancia creada con ID: {ec2_id} y nombre de instancia 'ec2-web'")
 
 # Esperamos que la instancia este corriendo
 ec2.get_waiter('instance_status_ok').wait(InstanceIds=[ec2_id])
-
 
 
 #Documentacion:

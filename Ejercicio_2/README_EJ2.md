@@ -1,4 +1,4 @@
-# Ejecución del Ejercicio 2 - Obligatorio
+# Ejercicio 2 - Obligatorio
 
 
 ## Requisitos Previos:
@@ -56,9 +56,9 @@ git clone https://github.com/Plaga34/Obligatorio-DevOPs.git
 ```bash
 gh repo clone Plaga34/Obligatorio-DevOPs
 ```
-- Nos posicionamos sobre la carpeta donde se encuentra el archivo Ej_2.py
+- Nos posicionamos sobre la carpeta donde se encuentra /Obligatorio-DevOps/Ejercicio 2/Ej_2.py
 ```bash
-  /home/sysadmin/PycharmProjects/Obligatorio-DevOps/Ejercicio 2
+  /Obligatorio-DevOps/Ejercicio 2/Ej_2.py
 ```
 ## Ejecutamos el programa
 
